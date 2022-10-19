@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-// import Cookies from 'js-cookie'
 
 import './index.css'
 
@@ -8,11 +7,7 @@ class LoginForm extends Component {
   state = {
     username: '',
     password: '',
-    //     showSubmitError: false,
-    //     errorMsg: '',
-    //     email: '',
-    //     number: '',
-    //     profession: '',
+    para: '',
   }
 
   onChangeUsername = event => {
@@ -22,51 +17,6 @@ class LoginForm extends Component {
   onChangePassword = event => {
     this.setState({password: event.target.value})
   }
-
-  //   onChangeEmail = event => {
-  //     this.setState({email: event.target.value})
-  //   }
-
-  //   onChangeNumber = event => {
-  //     this.setState({number: event.target.value})
-  //   }
-
-  //   onChangeProfession = event => {
-  //     this.setState({profession: event.target.value})
-  //   }
-
-  //   onSubmitSuccess = jwtToken => {
-  //     // eslint-disable-next-line no-unused-vars
-  //     const {history} = this.props
-
-  //     Cookies.set('jwt_token', jwtToken, {
-  //       expires: 30,
-  //     })
-  //     window.location.assign('https://hoblist.com/api/movieList')
-  //   }
-
-  //   onSubmitFailure = errorMsg => {
-  //     this.setState({showSubmitError: true, errorMsg})
-  //   }
-
-  //   submitForm = async event => {
-  //     event.preventDefault()
-  //     const {username, password} = this.state
-  //     const userDetails = {username, password}
-  //     const url = 'https://apis.ccbp.in/login'
-  //     const options = {
-  //       method: 'POST',
-  //       body: JSON.stringify(userDetails),
-  //     }
-  //     const response = await fetch(url, options)
-  //     const data = await response.json()
-
-  //     if (response.ok === true) {
-  //       this.onSubmitSuccess(data.jwt_token)
-  //     } else {
-  //       this.onSubmitFailure(data.error_msg)
-  //     }
-  //   }
 
   renderPasswordField = () => {
     const {password} = this.state
@@ -121,30 +71,37 @@ class LoginForm extends Component {
     }
   }
 
-  render() {
-    const {errorMsg} = this.state
-    //     const jwtToken = Cookies.get('jwt_token')
-    //     const {history} = this.props
-    //     if (jwtToken !== undefined) {
-    //       return <Redirect to="/" />
-    //     }
-    //     history.replace('/')
+  imgClick = () => {
+    this.setState({
+      para:
+        'Company:-Geeksynergy Technologies Pvt Ltd,Address:-Sanjayanagar,Bengaluru-56,Phone:-XXXXXXXXX09,Email:-XXXXXX@gmail.com',
+    })
+  }
 
+  render() {
+    const {errorMsg, para} = this.state
     return (
       <div className="login-form-container">
         <form className="form-container" onSubmit={this.submitForm}>
           <div className="logo-constain">
-            <img
-              src="https://res.cloudinary.com/dvdfoq1j9/image/upload/v1666123831/geeksynergy-technologies-pvt-ltd-sanjay-nagar-bangalore-it-solution-providers-qzsgim75kr-250_b9ivbb.webp"
-              className="small-logo"
-              alt="website logo"
-            />
+            <button
+              type="button"
+              className="img-button"
+              onClick={this.imgClick}
+            >
+              <img
+                src="https://res.cloudinary.com/dvdfoq1j9/image/upload/v1666123831/geeksynergy-technologies-pvt-ltd-sanjay-nagar-bangalore-it-solution-providers-qzsgim75kr-250_b9ivbb.webp"
+                className="small-logo"
+                alt="website logo"
+              />
+            </button>
             <button type="button" className="button">
               <Link to="/" className="signUpLink">
                 SignUp
               </Link>
             </button>
           </div>
+          <p>{para}</p>
           <div className="input-container">{this.renderUsernameField()}</div>
           <div className="input-container">{this.renderPasswordField()}</div>
           <button type="submit" className="login-button">
